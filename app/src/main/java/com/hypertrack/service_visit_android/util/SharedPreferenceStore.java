@@ -1,4 +1,4 @@
-package com.hypertrack.example_android.util;
+package com.hypertrack.service_visit_android.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,8 +9,8 @@ import android.text.TextUtils;
  */
 public class SharedPreferenceStore {
     private static final String PREF_NAME = "com.hypertrack.example_android";
-    private static final String VISIT_ACTION_ID = "com.hypertrack.example.VisitActionId";
-    private static final String STOPOVER_ACTION_ID = "com.hypertrack.example.StopOverActionId";
+    private static final String VISIT_ACTION_ID_KEY = "vist_action_id";
+    private static final String STOPOVER_ACTION_ID_KEY = "stop_action_id";
     private static final String ACTION_ID_KEY = "action_id";
 
     public static void setActionID(Context context, String actionID) {
@@ -29,7 +29,7 @@ public class SharedPreferenceStore {
 
         SharedPreferences.Editor editor = getEditor(context);
 
-        editor.putString(VISIT_ACTION_ID, actionID);
+        editor.putString(VISIT_ACTION_ID_KEY, actionID);
         editor.commit();
     }
 
@@ -39,16 +39,16 @@ public class SharedPreferenceStore {
 
         SharedPreferences.Editor editor = getEditor(context);
 
-        editor.putString(STOPOVER_ACTION_ID, actionID);
+        editor.putString(STOPOVER_ACTION_ID_KEY, actionID);
         editor.commit();
     }
 
     public static String getVisitActionId(Context context) {
-        return getSharedPreferences(context).getString(VISIT_ACTION_ID, null);
+        return getSharedPreferences(context).getString(VISIT_ACTION_ID_KEY, null);
     }
 
     public static String getStopoverActionId(Context context) {
-        return getSharedPreferences(context).getString(STOPOVER_ACTION_ID, null);
+        return getSharedPreferences(context).getString(STOPOVER_ACTION_ID_KEY, null);
     }
 
     public static String getActionID(Context context) {
@@ -59,8 +59,8 @@ public class SharedPreferenceStore {
         SharedPreferences.Editor editor = getEditor(context);
 
         editor.remove(ACTION_ID_KEY);
-        editor.remove(STOPOVER_ACTION_ID);
-        editor.remove(VISIT_ACTION_ID);
+        editor.remove(STOPOVER_ACTION_ID_KEY);
+        editor.remove(VISIT_ACTION_ID_KEY);
         editor.apply();
     }
 

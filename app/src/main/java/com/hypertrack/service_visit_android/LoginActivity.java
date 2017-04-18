@@ -1,4 +1,4 @@
-package com.hypertrack.example_android;
+package com.hypertrack.service_visit_android;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,12 +15,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.hypertrack.example_android.util.BaseActivity;
 import com.hypertrack.lib.HyperTrack;
 import com.hypertrack.lib.callbacks.HyperTrackCallback;
 import com.hypertrack.lib.models.ErrorResponse;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
+import com.hypertrack.service_visit_android.util.BaseActivity;
 
 /**
  * Created by piyush on 30/09/16.

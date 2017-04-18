@@ -1,4 +1,4 @@
-package com.hypertrack.example_android.util;
+package com.hypertrack.service_visit_android.util;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-import com.hypertrack.example_android.R;
+import com.hypertrack.service_visit_android.R;
 
 /**
  * Created by piyush on 04/11/16.
@@ -22,11 +22,8 @@ public class PermissionUtils {
 
     public static boolean checkForPermission(@NonNull final Activity activity,
                                              @NonNull final String permission) {
-        if (ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
+        return ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED;
 
-        return false;
     }
 
     /**

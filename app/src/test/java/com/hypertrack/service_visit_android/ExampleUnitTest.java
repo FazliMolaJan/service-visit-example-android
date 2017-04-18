@@ -1,8 +1,8 @@
-package com.hypertrack.example_android;
+package com.hypertrack.service_visit_android;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

@@ -1,9 +1,9 @@
-package com.hypertrack.example_android.util;
+package com.hypertrack.service_visit_android.util;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.hypertrack.example_android.R;
+import com.hypertrack.service_visit_android.R;
 
 /**
  * Created by piyush on 30/09/16.

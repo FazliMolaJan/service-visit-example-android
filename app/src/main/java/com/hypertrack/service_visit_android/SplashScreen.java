@@ -1,4 +1,4 @@
-package com.hypertrack.example_android;
+package com.hypertrack.service_visit_android;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.support.v4.app.TaskStackBuilder;
 import android.text.TextUtils;
 import android.view.Window;
 
-import com.hypertrack.example_android.util.BaseActivity;
 import com.hypertrack.lib.HyperTrack;
+import com.hypertrack.service_visit_android.util.BaseActivity;
 
 /**
  * Created by piyush on 21/03/17.
