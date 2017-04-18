@@ -73,10 +73,9 @@ public class MainActivity extends BaseActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             });
-
-
         }
     };
+
     // Click Listener for StartJob Button
     private View.OnClickListener startjobListener = new View.OnClickListener() {
         @Override
@@ -98,6 +97,7 @@ public class MainActivity extends BaseActivity {
         }
 
     };
+
     //Click Listener for CloseJob Button
     private View.OnClickListener closejobBtnClickListener = new View.OnClickListener() {
         @Override
@@ -141,7 +141,6 @@ public class MainActivity extends BaseActivity {
                     SharedPreferenceStore.setStopoverActionId(MainActivity.this, action.getId());
 
                     //Write your logic here
-
                     Toast.makeText(MainActivity.this, "Job (id = " + action.getId() + ") accepted successfully.",
                             Toast.LENGTH_SHORT).show();
                 }
