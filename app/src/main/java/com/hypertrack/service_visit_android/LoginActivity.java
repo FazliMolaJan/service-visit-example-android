@@ -179,6 +179,7 @@ public class LoginActivity extends BaseActivity {
      * Call this method when user has successfully logged in
      */
     private void onUserLoginSuccess() {
+        //Start tracking a user
         HyperTrack.startTracking(new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {

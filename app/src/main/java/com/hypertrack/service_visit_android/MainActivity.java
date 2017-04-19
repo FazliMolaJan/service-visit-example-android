@@ -41,11 +41,10 @@ public class MainActivity extends BaseActivity {
             //This will create a random order ID, in your case this might be your orderID
             // that you will fetch from server or generate locally
             final String orderID = UUID.randomUUID().toString();
-
+            // Construct a place object for Action's expected place
             Place expectedPlace = new Place().setLocation(28.56217, 77.16160)
                     .setAddress("HyperTrack, Vasant Vihar")
                     .setName("HyperTrack");
-
             // Create ActionParams object to define Action params
             ActionParams params = new ActionParamsBuilder()
                     .setExpectedPlace(expectedPlace)
@@ -53,24 +52,18 @@ public class MainActivity extends BaseActivity {
                     .setType(Action.ACTION_TYPE_VISIT)
                     .setLookupId(orderID)
                     .build();
-
             // Call assignAction to start the tracking action
             HyperTrack.createAndAssignAction(params, new HyperTrackCallback() {
                 @Override
                 public void onSuccess(@NonNull SuccessResponse response) {
-
                     if (response.getResponseObject() != null) {
                         Action action = (Action) response.getResponseObject();
-
                         SharedPreferenceStore.setVisitActionId(MainActivity.this, action.getId());
-
                         createStopOverAction(action.getExpectedPlace().getId(), action.getLookupID());
-
                         //Write your logic here
 
                     }
                 }
-
                 @Override
                 public void onError(@NonNull ErrorResponse errorResponse) {
                     if (mProgressDialog != null) {
@@ -81,7 +74,6 @@ public class MainActivity extends BaseActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             });
-
         }
     };
 
