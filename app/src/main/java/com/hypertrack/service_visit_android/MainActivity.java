@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(MainActivity.this, "VisitActionID is empty.", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            // Complete action using actionId for the Visit Action that you created
             HyperTrack.completeAction(visitActionId);
 
             Toast.makeText(MainActivity.this, "Job Started", Toast.LENGTH_SHORT).show();
@@ -112,7 +112,7 @@ public class MainActivity extends BaseActivity {
                 return;
             }
 
-            //Complete Job
+            //Complete action using actionId for the Stopover Action that you created
             HyperTrack.completeAction(stopoverActionId);
 
             Toast.makeText(MainActivity.this, "Job Closed Successfully", Toast.LENGTH_SHORT).show();
@@ -199,7 +199,7 @@ public class MainActivity extends BaseActivity {
     public void onLogoutClicked(MenuItem menuItem) {
         Toast.makeText(MainActivity.this, R.string.main_logout_success_msg, Toast.LENGTH_SHORT).show();
 
-        // Stop HyperTrack SDK
+        // Stop tracking a user
         HyperTrack.stopTracking();
 
         // Proceed to LoginActivity for a fresh User Login
