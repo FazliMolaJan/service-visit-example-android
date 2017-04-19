@@ -16,6 +16,6 @@ public class ExampleAppApplication extends Application {
         // Initialize HyperTrack SDK with the Publishable Key
         // Refer to documentation at https://docs.hypertrack.com/v3/gettingstarted/authentication.html#publishable-key
         // @NOTE: Add **YOUR_PUBLISHABLE_KEY** here for SDK to be authenticated with HyperTrack Server
-        HyperTrack.initialize(this, < YOUR_PUBLISHABLE_KEY_HERE >)
+        HyperTrack.initialize(this, "pk_4d4fb6fd2e302602581a7bcebb62e8c4bce268d8");
     }
 }

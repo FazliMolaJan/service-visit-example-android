@@ -40,11 +40,12 @@ public class MainActivity extends BaseActivity {
 
             //This will create a random order ID, in your case this might be your orderID
             // that you will fetch from server or generate locally
-            String orderID = UUID.randomUUID().toString();
+            final String orderID = UUID.randomUUID().toString();
 
             Place expectedPlace = new Place().setLocation(28.56217, 77.16160)
                     .setAddress("HyperTrack, Vasant Vihar")
                     .setName("HyperTrack");
+
             // Create ActionParams object to define Action params
             ActionParams params = new ActionParamsBuilder()
                     .setExpectedPlace(expectedPlace)
@@ -83,6 +84,7 @@ public class MainActivity extends BaseActivity {
 
         }
     };
+
     // Click Listener for StartJob Button
     private View.OnClickListener startjobListener = new View.OnClickListener() {
         @Override
@@ -104,6 +106,7 @@ public class MainActivity extends BaseActivity {
         }
 
     };
+
     //Click Listener for CloseJob Button
     private View.OnClickListener closejobBtnClickListener = new View.OnClickListener() {
         @Override
@@ -148,7 +151,6 @@ public class MainActivity extends BaseActivity {
                     SharedPreferenceStore.setStopoverActionId(MainActivity.this, action.getId());
 
                     //Write your logic here
-
                     Toast.makeText(MainActivity.this, "Job (id = " + action.getId() + ") accepted successfully.",
                             Toast.LENGTH_SHORT).show();
                 }
