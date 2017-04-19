@@ -23,10 +23,12 @@ import com.hypertrack.service_visit_android.util.BaseActivity;
 import com.hypertrack.service_visit_android.util.SharedPreferenceStore;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class MainActivity extends BaseActivity {
 
     private ProgressDialog mProgressDialog;
+
     // Click Listener for AcceptJob Button
     private View.OnClickListener acceptActionBtnListener = new View.OnClickListener() {
         @Override
@@ -36,6 +38,10 @@ public class MainActivity extends BaseActivity {
             mProgressDialog.setMessage("Loading...");
             mProgressDialog.show();
 
+            //This will create a random order ID, in your case this might be your orderID
+            // that you will fetch from server or generate locally
+            String orderID = UUID.randomUUID().toString();
+
             Place expectedPlace = new Place().setLocation(28.56217, 77.16160)
                     .setAddress("HyperTrack, Vasant Vihar")
                     .setName("HyperTrack");
@@ -44,6 +50,7 @@ public class MainActivity extends BaseActivity {
                     .setExpectedPlace(expectedPlace)
                     .setExpectedAt(new Date())
                     .setType(Action.ACTION_TYPE_VISIT)
+                    .setLookupId(orderID)
                     .build();
 
             // Call assignAction to start the tracking action
@@ -51,12 +58,12 @@ public class MainActivity extends BaseActivity {
                 @Override
                 public void onSuccess(@NonNull SuccessResponse response) {
 
-
                     if (response.getResponseObject() != null) {
                         Action action = (Action) response.getResponseObject();
 
                         SharedPreferenceStore.setVisitActionId(MainActivity.this, action.getId());
-                        createStopOverAction(action.getExpectedPlace().getId());
+
+                        createStopOverAction(action.getExpectedPlace().getId(), action.getLookupID());
 
                         //Write your logic here
 
@@ -73,7 +80,6 @@ public class MainActivity extends BaseActivity {
                             Toast.LENGTH_SHORT).show();
                 }
             });
-
 
         }
     };
@@ -120,12 +126,13 @@ public class MainActivity extends BaseActivity {
         }
     };
 
-    private void createStopOverAction(String placeID) {
+    private void createStopOverAction(String placeID, String lookupID) {
         // Create ActionParams object to define Action params
         ActionParams stopOverParams = new ActionParamsBuilder()
                 .setExpectedPlaceId(placeID)
                 .setExpectedAt(new Date())
                 .setType(Action.ACTION_TYPE_STOPOVER)
+                .setLookupId(lookupID)
                 .build();
 
         // Call assignAction to start the tracking action
