@@ -9,9 +9,20 @@ import android.text.TextUtils;
  */
 public class SharedPreferenceStore {
     private static final String PREF_NAME = "com.hypertrack.example_android";
+    private static final String DRIVER_ID_KEY = "driver_id";
     private static final String VISIT_ACTION_ID_KEY = "vist_action_id";
     private static final String STOPOVER_ACTION_ID_KEY = "stop_action_id";
     private static final String ACTION_ID_KEY = "action_id";
+
+    public static void setDriverId(Context context, String driverID) {
+        if (TextUtils.isEmpty(driverID))
+            return;
+
+        SharedPreferences.Editor editor = getEditor(context);
+
+        editor.putString(DRIVER_ID_KEY, driverID);
+        editor.commit();
+    }
 
     public static void setActionID(Context context, String actionID) {
         if (TextUtils.isEmpty(actionID))
@@ -43,6 +54,10 @@ public class SharedPreferenceStore {
         editor.commit();
     }
 
+    public static String getDriverId(Context context) {
+        return getSharedPreferences(context).getString(DRIVER_ID_KEY, null);
+    }
+
     public static String getVisitActionId(Context context) {
         return getSharedPreferences(context).getString(VISIT_ACTION_ID_KEY, null);
     }
@@ -57,7 +72,7 @@ public class SharedPreferenceStore {
 
     public static void clearIDs(Context context) {
         SharedPreferences.Editor editor = getEditor(context);
-
+        editor.remove(DRIVER_ID_KEY);
         editor.remove(ACTION_ID_KEY);
         editor.remove(STOPOVER_ACTION_ID_KEY);
         editor.remove(VISIT_ACTION_ID_KEY);

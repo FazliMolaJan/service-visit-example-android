@@ -7,8 +7,8 @@ import android.support.v4.app.TaskStackBuilder;
 import android.text.TextUtils;
 import android.view.Window;
 
-import com.hypertrack.lib.HyperTrack;
 import com.hypertrack.service_visit_android.util.BaseActivity;
+import com.hypertrack.service_visit_android.util.SharedPreferenceStore;
 
 /**
  * Created by piyush on 21/03/17.
@@ -22,8 +22,8 @@ public class SplashScreen extends BaseActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         // Check if Driver is logged in currently
-        String userId = HyperTrack.getUserId();
-        if (TextUtils.isEmpty(userId)) {
+        String driverId = SharedPreferenceStore.getDriverId(this);
+        if (TextUtils.isEmpty(driverId)) {
 
             // Initiate Driver Login by starting LoginActivity
             TaskStackBuilder.create(SplashScreen.this)
