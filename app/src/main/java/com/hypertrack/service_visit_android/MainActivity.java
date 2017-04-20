@@ -23,10 +23,12 @@ import com.hypertrack.service_visit_android.util.BaseActivity;
 import com.hypertrack.service_visit_android.util.SharedPreferenceStore;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class MainActivity extends BaseActivity {
 
     private ProgressDialog mProgressDialog;
+
     // Click Listener for AcceptJob Button
     private View.OnClickListener acceptActionBtnListener = new View.OnClickListener() {
         @Override
@@ -36,6 +38,10 @@ public class MainActivity extends BaseActivity {
             mProgressDialog.setMessage("Loading...");
             mProgressDialog.show();
 
+            //This will create a random order ID, in your case this might be your orderID
+            // that you will fetch from server or generate locally
+            final String orderID = UUID.randomUUID().toString();
+            // Construct a place object for Action's expected place
             Place expectedPlace = new Place().setLocation(28.56217, 77.16160)
                     .setAddress("HyperTrack, Vasant Vihar")
                     .setName("HyperTrack");
@@ -44,25 +50,20 @@ public class MainActivity extends BaseActivity {
                     .setExpectedPlace(expectedPlace)
                     .setExpectedAt(new Date())
                     .setType(Action.ACTION_TYPE_VISIT)
+                    .setLookupId(orderID)
                     .build();
-
             // Call assignAction to start the tracking action
             HyperTrack.createAndAssignAction(params, new HyperTrackCallback() {
                 @Override
                 public void onSuccess(@NonNull SuccessResponse response) {
-
-
                     if (response.getResponseObject() != null) {
                         Action action = (Action) response.getResponseObject();
-
                         SharedPreferenceStore.setVisitActionId(MainActivity.this, action.getId());
-                        createStopOverAction(action.getExpectedPlace().getId());
-
+                        createStopOverAction(action.getExpectedPlace().getId(), action.getLookupID());
                         //Write your logic here
 
                     }
                 }
-
                 @Override
                 public void onError(@NonNull ErrorResponse errorResponse) {
                     if (mProgressDialog != null) {
@@ -87,7 +88,7 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(MainActivity.this, "VisitActionID is empty.", Toast.LENGTH_SHORT).show();
                 return;
             }
-
+            // Complete action using actionId for the Visit Action that you created
             HyperTrack.completeAction(visitActionId);
 
             Toast.makeText(MainActivity.this, "Job Started", Toast.LENGTH_SHORT).show();
@@ -111,7 +112,7 @@ public class MainActivity extends BaseActivity {
                 return;
             }
 
-            //Complete Job
+            //Complete action using actionId for the Stopover Action that you created
             HyperTrack.completeAction(stopoverActionId);
 
             Toast.makeText(MainActivity.this, "Job Closed Successfully", Toast.LENGTH_SHORT).show();
@@ -120,12 +121,13 @@ public class MainActivity extends BaseActivity {
         }
     };
 
-    private void createStopOverAction(String placeID) {
+    private void createStopOverAction(String placeID, String lookupID) {
         // Create ActionParams object to define Action params
         ActionParams stopOverParams = new ActionParamsBuilder()
                 .setExpectedPlaceId(placeID)
                 .setExpectedAt(new Date())
                 .setType(Action.ACTION_TYPE_STOPOVER)
+                .setLookupId(lookupID)
                 .build();
 
         // Call assignAction to start the tracking action
@@ -197,7 +199,7 @@ public class MainActivity extends BaseActivity {
     public void onLogoutClicked(MenuItem menuItem) {
         Toast.makeText(MainActivity.this, R.string.main_logout_success_msg, Toast.LENGTH_SHORT).show();
 
-        // Stop HyperTrack SDK
+        // Stop tracking a user
         HyperTrack.stopTracking();
 
         // Proceed to LoginActivity for a fresh User Login
