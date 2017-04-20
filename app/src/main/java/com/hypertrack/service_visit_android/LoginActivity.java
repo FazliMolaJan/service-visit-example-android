@@ -100,9 +100,12 @@ public class LoginActivity extends BaseActivity {
         // Show Login Button loader
         loginBtnLoader.setVisibility(View.VISIBLE);
 
-        // Get Driver details, if specified
+        // Get Driver details, if provided
         final String name = driverNameText.getText().toString();
         final String phoneNumber = driverPhoneNumberText.getText().toString();
+
+        // PhoneNumber is used as the lookup_id here but you can specify any other entity as the lookup_id.
+        final String lookupId = phoneNumber;
 
         /**
          * Create a User on HyperTrack Server here to login your driver & configure HyperTrack SDK with
@@ -110,8 +113,12 @@ public class LoginActivity extends BaseActivity {
          * OR
          * Implement your API call for Driver Login and get back a HyperTrack UserId from your API Server
          * to be configured in the HyperTrack SDK.
+         *
+         * @NOTE:
+         * Specify Driver name, phone number and a lookup_id denoting your driver's internal id.
+         * PhoneNumber is used as the lookup_id here but you can specify any other entity as the lookup_id.
          */
-        HyperTrack.createUser(name, phoneNumber, new HyperTrackCallback() {
+        HyperTrack.createUser(name, phoneNumber, lookupId, new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
                 // Hide Login Button loader
@@ -141,6 +148,8 @@ public class LoginActivity extends BaseActivity {
      * Call this method when Driver has successfully logged in
      */
     private void onDriverLoginSuccess() {
+
+        // To start tracking your driver, call HyperTrack's startTracking API
         HyperTrack.startTracking(new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
@@ -187,6 +196,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_SERVICES) {
             if (resultCode == Activity.RESULT_OK) {
                 // Location Services enabled successfully, proceed with Driver Login flow

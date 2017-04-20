@@ -21,11 +21,11 @@ public class SplashScreen extends BaseActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        // Check if User is logged in currently
+        // Check if Driver is logged in currently
         String userId = HyperTrack.getUserId();
         if (TextUtils.isEmpty(userId)) {
 
-            // Start User Login by starting LoginActivity
+            // Initiate Driver Login by starting LoginActivity
             TaskStackBuilder.create(SplashScreen.this)
                     .addNextIntentWithParentStack(new Intent(SplashScreen.this, LoginActivity.class)
                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -33,7 +33,7 @@ public class SplashScreen extends BaseActivity {
             finish();
         } else {
 
-            // Start User Session by starting MainActivity
+            // Start Driver Session by starting MainActivity
             TaskStackBuilder.create(SplashScreen.this)
                     .addNextIntentWithParentStack(new Intent(SplashScreen.this, MainActivity.class)
                             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
