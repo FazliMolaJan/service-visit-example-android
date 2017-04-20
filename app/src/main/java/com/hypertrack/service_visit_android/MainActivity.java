@@ -179,6 +179,15 @@ public class MainActivity extends BaseActivity {
                 SharedPreferenceStore.setVisitActionId(MainActivity.this, action.getId());
 
                 /**
+                 * The VISIT Action just created has the tracking url which can be shared with your customers.
+                 * This will enable the customer to live track the Service professional.
+                 *
+                 * @NOTE You can now share this tracking_url with your customers via an SMS
+                 * or via your Customer app using in-app notifications.
+                 */
+                String trackingUrl = action.getTrackingURL();
+
+                /**
                  * Yay! VISIT Type Action has been successfully created and assigned to current user.
                  * Now, we need to createAndAssignAction for STOPOVER Type Action using same
                  * expected place and same lookup_id.
