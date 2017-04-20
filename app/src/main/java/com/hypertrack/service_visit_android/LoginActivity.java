@@ -6,10 +6,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.TaskStackBuilder;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -23,47 +20,18 @@ import com.hypertrack.lib.models.User;
 import com.hypertrack.service_visit_android.util.BaseActivity;
 
 /**
- * Created by piyush on 30/09/16.
+ * This class can be used to enable Driver's Login flow in your app. This Activity consists of optional
+ * input fields for Driver's Name and his phone number. Once the Location Services are enabled and
+ * Location Permission has been granted, the driver can proceed with the login. This will be when a User
+ * entity will be created on HyperTrack API Server and the SDK will be configured for this created User.
+ *
+ * Once a User has been created, you can start your Driver's session in the app and navigate to MainActivity
+ * where he can receive, perform and complete the service visits assigned to him.
  */
 public class LoginActivity extends BaseActivity {
 
-    private TextInputLayout nameHeader, phoneNumberHeader;
-    private EditText nameText, phoneNumberText;
+    private EditText driverNameText, driverPhoneNumberText;
     private LinearLayout loginBtnLoader;
-
-    private TextWatcher userNameTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if (s != null && s.length() > 0) {
-                nameHeader.setError(null);
-            }
-        }
-    };
-
-    private TextWatcher passwordTextWatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            if (s != null && s.length() > 0) {
-                phoneNumberHeader.setError(null);
-            }
-        }
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,24 +49,18 @@ public class LoginActivity extends BaseActivity {
      * Call this method to initialize UI views and handle listeners for these views
      */
     private void initUIViews() {
-        // Initialize UserName Views
-        nameHeader = (TextInputLayout) findViewById(R.id.login_name_header);
-        nameText = (EditText) findViewById(R.id.login_name);
-        if (nameText != null)
-            nameText.addTextChangedListener(userNameTextWatcher);
+        // Initialize DriverName Views
+        driverNameText = (EditText) findViewById(R.id.login_name);
 
-        // Initialize Password Views
-        phoneNumberHeader = (TextInputLayout) findViewById(R.id.login_phone_number_header);
-        phoneNumberText = (EditText) findViewById(R.id.login_phone_number);
-        if (phoneNumberText != null)
-            phoneNumberText.addTextChangedListener(passwordTextWatcher);
+        // Initialize PhoneNumber Views
+        driverPhoneNumberText = (EditText) findViewById(R.id.login_phone_number);
 
         // Initialize Login Btn Loader
-        loginBtnLoader = (LinearLayout) findViewById(R.id.login_user_login_btn_loader);
+        loginBtnLoader = (LinearLayout) findViewById(R.id.login_driver_login_btn_loader);
     }
 
     /**
-     * Call this method when User Login button has been clicked.
+     * Call this method when Driver Login button has been clicked.
      * Note that this method is linked with the layout file (content_login.xml)
      * using this button's layout's onClick attribute. So no need to invoke this
      * method or handle login button's click listener explicitly.
@@ -111,7 +73,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * Call this method to check Location Settings before proceeding for User Login
+     * Call this method to check Location Settings before proceeding for Driver Login
      */
     private void checkForLocationSettings() {
         // Check for Location permission
@@ -126,27 +88,27 @@ public class LoginActivity extends BaseActivity {
         }
 
         // Location Permissions and Settings have been enabled
-        // Proceed with your app logic here i.e User Login in this case
-        attemptUserLogin();
+        // Proceed with your app logic here i.e Driver Login in this case
+        attemptDriverLogin();
     }
 
     /**
-     * Call this method to attempt user login. This method will create a User on HyperTrack Server
+     * Call this method to attempt driver login. This method will create a User on HyperTrack Server
      * and configure the SDK using this generated UserId.
      */
-    private void attemptUserLogin() {
+    private void attemptDriverLogin() {
         // Show Login Button loader
         loginBtnLoader.setVisibility(View.VISIBLE);
 
-        // Get User details, if specified
-        final String name = nameText.getText().toString();
-        final String phoneNumber = phoneNumberText.getText().toString();
+        // Get Driver details, if specified
+        final String name = driverNameText.getText().toString();
+        final String phoneNumber = driverPhoneNumberText.getText().toString();
 
         /**
-         * Create a User on HyperTrack Server here to login your user & configure HyperTrack SDK with
+         * Create a User on HyperTrack Server here to login your driver & configure HyperTrack SDK with
          * this generated HyperTrack UserId.
          * OR
-         * Implement your API call for User Login and get back a HyperTrack UserId from your API Server
+         * Implement your API call for Driver Login and get back a HyperTrack UserId from your API Server
          * to be configured in the HyperTrack SDK.
          */
         HyperTrack.createUser(name, phoneNumber, new HyperTrackCallback() {
@@ -160,8 +122,8 @@ public class LoginActivity extends BaseActivity {
                 // HyperTrack SDK auto-configures UserId on createUser API call, so no need to call
                 // HyperTrack.setUserId() API
 
-                // On UserLogin success
-                onUserLoginSuccess();
+                // On DriverLogin success
+                onDriverLoginSuccess();
             }
 
             @Override
@@ -176,9 +138,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     /**
-     * Call this method when user has successfully logged in
+     * Call this method when Driver has successfully logged in
      */
-    private void onUserLoginSuccess() {
+    private void onDriverLoginSuccess() {
         HyperTrack.startTracking(new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
@@ -187,7 +149,7 @@ public class LoginActivity extends BaseActivity {
 
                 Toast.makeText(LoginActivity.this, R.string.login_success_msg, Toast.LENGTH_SHORT).show();
 
-                // Start User Session by starting MainActivity
+                // Start Driver Session by starting MainActivity
                 TaskStackBuilder.create(LoginActivity.this)
                         .addNextIntentWithParentStack(new Intent(LoginActivity.this, MainActivity.class)
                                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
@@ -212,6 +174,7 @@ public class LoginActivity extends BaseActivity {
 
         if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Location Permission granted successfully, proceed with Driver Login flow
                 checkForLocationSettings();
 
             } else {
@@ -226,7 +189,9 @@ public class LoginActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == HyperTrack.REQUEST_CODE_LOCATION_SERVICES) {
             if (resultCode == Activity.RESULT_OK) {
+                // Location Services enabled successfully, proceed with Driver Login flow
                 checkForLocationSettings();
+
             } else {
                 // Handle Enable Location Services request denied error
                 Toast.makeText(this, R.string.enable_location_settings, Toast.LENGTH_SHORT).show();
