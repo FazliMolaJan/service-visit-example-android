@@ -51,23 +51,23 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initUIViews() {
+        // Initialize Click Listeners for Job buttons
+        initClickListeners();
+
         // Initialize acceptJob Button
-        Button acceptJob = (Button) findViewById(R.id.acceptjob);
+        Button acceptJob = (Button) findViewById(R.id.accept_job_btn);
         if (acceptJob != null)
             acceptJob.setOnClickListener(acceptJobBtnListener);
 
         // Initialize startJob Button
-        Button startJob = (Button) findViewById(R.id.startjob);
+        Button startJob = (Button) findViewById(R.id.start_job_btn);
         if (startJob != null)
             startJob.setOnClickListener(startJobBtnListener);
 
         //Initialize closeJob button
-        Button closeJob = (Button) findViewById(R.id.closejob);
+        Button closeJob = (Button) findViewById(R.id.close_job_btn);
         if (closeJob != null)
             closeJob.setOnClickListener(closeJobBtnListener);
-
-        // Initialize Click Listeners for these buttons
-        initClickListeners();
     }
 
     private void initClickListeners() {

@@ -50,21 +50,24 @@
                         android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/acceptjob"
+                            android:id="@+id/accept_job_btn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_high"
                             android:text="@string/accept_job" />
 
                         <Button
-                            android:id="@+id/startjob"
+                            android:id="@+id/start_job_btn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_high"
                             android:text="@string/start_job" />
 
                         <Button
-                            android:id="@+id/closejob"
+                            android:id="@+id/close_job_btn"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_high"
                             android:text="@string/close_job" />
                     </LinearLayout>
                 </LinearLayout>

@@ -18,6 +18,7 @@ import com.hypertrack.lib.models.ErrorResponse;
 import com.hypertrack.lib.models.SuccessResponse;
 import com.hypertrack.lib.models.User;
 import com.hypertrack.service_visit_android.util.BaseActivity;
+import com.hypertrack.service_visit_android.util.SharedPreferenceStore;
 
 /**
  * This class can be used to enable Driver's Login flow in your app. This Activity consists of optional
@@ -156,6 +157,8 @@ public class LoginActivity extends BaseActivity {
                 // Hide Login Button loader
                 loginBtnLoader.setVisibility(View.GONE);
 
+                // Handle startTracking API response
+                SharedPreferenceStore.setDriverId(LoginActivity.this, HyperTrack.getUserId());
                 Toast.makeText(LoginActivity.this, R.string.login_success_msg, Toast.LENGTH_SHORT).show();
 
                 // Start Driver Session by starting MainActivity
