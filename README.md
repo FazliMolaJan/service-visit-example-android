@@ -1,7 +1,7 @@
 # HyperTrack example Android apps
 [![Slack Status](http://slack.hypertrack.com/badge.svg)](http://slack.hypertrack.com)
 
-Example application built with the `HyperTrack SDK` for Android. For the iOS equivalent, refer to [example-ios](https://github.com/hypertrack/example-ios).
+Example at-home service visit tracking application built with the `HyperTrack SDK` for Android. For an extensive tutorial, visit the [HyperTrack Tutorial](https://www.hypertrack.com/tutorials/service-visit-tracking-android).
 
 ## Example modules
 1. app - example of integration with `HyperTrack SDK`, which transmits location data for HyperTrack User
@@ -11,7 +11,7 @@ Example application built with the `HyperTrack SDK` for Android. For the iOS equ
 2. HyperTrack API keys. Learn more about them [here](https://docs.hypertrack.com/v3/gettingstarted/authentication.html).
 
 ## Usage:
-![Driver example](readme-imgs/driver.gif)
+![Driver example](readme-imgs/service-call-screenrecord.gif)
 
 The example application implements tracking a User in the background as well as tracking a User on an Action. Read our [introduction](https://docs.hypertrack.com/) to know more.
 
@@ -27,7 +27,7 @@ Recommended: Take a look at the Android [documentation](https://docs.hypertrack.
 For detailed documentation of the methods and customizations, please visit the official [docs](https://docs.hypertrack.com/).
 
 ## Contribute
-Please use the [issues tracker](https://github.com/hypertrack/example-android/issues) to raise bug reports and feature requests. We'd love to see your pull requests - send them in!
+Please use the [issues tracker](https://github.com/hypertrack/service-visit-example-android/issues) to raise bug reports and feature requests. We'd love to see your pull requests - send them in!
 
 ## Support
 Join our [Slack community](http://slack.hypertrack.com) for instant responses. You can also email us at help@hypertrack.com.
