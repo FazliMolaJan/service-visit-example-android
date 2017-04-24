@@ -1,4 +1,4 @@
-# HyperTrack example Android apps
+# HyperTrack Service Visit Tracking Sample App
 [![Slack Status](http://slack.hypertrack.com/badge.svg)](http://slack.hypertrack.com)
 
 Example at-home service visit tracking application built with the `HyperTrack SDK` for Android. For an extensive tutorial, visit the [HyperTrack Tutorial](https://www.hypertrack.com/tutorials/service-visit-tracking-android).
