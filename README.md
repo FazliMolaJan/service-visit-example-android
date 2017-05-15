@@ -8,14 +8,14 @@ Example at-home service visit tracking application built with the `HyperTrack SD
 
 ## Requirements
 1. Android studio with emulator (or test device)
-2. HyperTrack API keys. Learn more about them [here](https://docs.hypertrack.com/v3/gettingstarted/authentication.html).
+2. HyperTrack API keys. Learn more about them [here](https://docs.hypertrack.com/gettingstarted/authentication.html).
 
 ## Usage:
 ![Driver example](readme-imgs/service-call-screenrecord.gif)
 
 The example application implements tracking a User in the background as well as tracking a User on an Action. Read our [introduction](https://docs.hypertrack.com/) to know more.
 
-Recommended: Take a look at the Android [documentation](https://docs.hypertrack.com/v3/sdks/android/installing.html).
+Recommended: Take a look at the Android [documentation](https://docs.hypertrack.com/sdks/android/setup.html).
 
 **STEPS**
 
