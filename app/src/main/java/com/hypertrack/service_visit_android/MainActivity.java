@@ -192,7 +192,7 @@ public class MainActivity extends BaseActivity {
                  * Now, we need to createAndAssignAction for STOPOVER Type Action using same
                  * expected place and same lookup_id.
                  */
-                assignStopoverActionForJob(action.getExpectedPlace().getId(), action.getLookupID());
+                assignStopoverActionForJob(action.getExpectedPlace().getId(), action.getLookupId());
             }
 
             @Override
