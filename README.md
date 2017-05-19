@@ -20,7 +20,7 @@ Recommended: Take a look at the Android [documentation](https://docs.hypertrack.
 **STEPS**
 
 1. Sync the Gradle files to download the HyperTrack SDKs.
-2. Replace `YOUR_PUBLISHABLE_KEY` with your key in `ExampleAppApplication.java`.
+2. Replace `YOUR_PUBLISHABLE_KEY` with your key in [`ExampleAppApplication.java`](https://github.com/hypertrack/service-visit-example-android/blob/master/app/src/main/java/com/hypertrack/service_visit_android/ExampleAppApplication.java).
 3. Run in emulator. You might need to enable the location permission: see [how](readme-imgs/location.gif).
 
 ## Documentation
