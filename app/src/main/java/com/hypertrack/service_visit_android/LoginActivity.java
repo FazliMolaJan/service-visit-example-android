@@ -119,7 +119,7 @@ public class LoginActivity extends BaseActivity {
          * Specify Driver name, phone number and a lookup_id denoting your driver's internal id.
          * PhoneNumber is used as the lookup_id here but you can specify any other entity as the lookup_id.
          */
-        HyperTrack.createUser(name, phoneNumber, lookupId, new HyperTrackCallback() {
+        HyperTrack.getOrCreateUser(name, phoneNumber, lookupId, new HyperTrackCallback() {
             @Override
             public void onSuccess(@NonNull SuccessResponse successResponse) {
                 // Hide Login Button loader
