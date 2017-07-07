@@ -114,9 +114,7 @@ public class MainActivity extends BaseActivity {
                 HyperTrack.completeAction(visitActionId);
 
                 Toast.makeText(MainActivity.this, "Job Started", Toast.LENGTH_SHORT).show();
-
             }
-
         };
 
         // Click Listener for CloseJob Button
@@ -192,7 +190,7 @@ public class MainActivity extends BaseActivity {
                  * Now, we need to createAndAssignAction for STOPOVER Type Action using same
                  * expected place and same lookup_id.
                  */
-                assignStopoverActionForJob(action.getExpectedPlace().getId(), action.getLookupID());
+                assignStopoverActionForJob(action.getExpectedPlace().getId(), action.getLookupId());
             }
 
             @Override
@@ -210,10 +208,10 @@ public class MainActivity extends BaseActivity {
     /**
      * This method creates and assigns STOPOVER type action using given expectedPlaceId and lookup_id
      *
-     * @param expectedPlaceID  ExpectedPlace Id created on HyperTrack API Server for the VISIT type action.
-     * @param lookupID         Internal order_id which maps to the current job being performed.
+     * @param expectedPlaceID ExpectedPlace Id created on HyperTrack API Server for the VISIT type action.
+     * @param orderId         Internal order_id which maps to the current job being performed.
      */
-    private void assignStopoverActionForJob(String expectedPlaceID, String lookupID) {
+    private void assignStopoverActionForJob(String expectedPlaceID, final String orderId) {
         /**
          * Create ActionParams object specifying the Stopover Action parameters including
          * already created ExpectedPlaceId, ExpectedAt time and same Lookup_id as for the Visit type action.
@@ -222,7 +220,7 @@ public class MainActivity extends BaseActivity {
                 .setExpectedPlaceId(expectedPlaceID)
                 .setExpectedAt(new Date())
                 .setType(Action.ACTION_TYPE_STOPOVER)
-                .setLookupId(lookupID)
+                .setLookupId(orderId)
                 .build();
 
         /**
@@ -239,6 +237,7 @@ public class MainActivity extends BaseActivity {
                 // Handle createAndAssignAction API success here
                 Action action = (Action) response.getResponseObject();
                 SharedPreferenceStore.setStopoverActionId(MainActivity.this, action.getId());
+                SharedPreferenceStore.setOrderID(MainActivity.this, orderId);
 
                 Toast.makeText(MainActivity.this, "Job (id = " + action.getId() + ") accepted successfully.",
                         Toast.LENGTH_SHORT).show();

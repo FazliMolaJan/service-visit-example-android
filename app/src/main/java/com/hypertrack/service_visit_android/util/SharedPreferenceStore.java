@@ -12,7 +12,7 @@ public class SharedPreferenceStore {
     private static final String DRIVER_ID_KEY = "driver_id";
     private static final String VISIT_ACTION_ID_KEY = "vist_action_id";
     private static final String STOPOVER_ACTION_ID_KEY = "stop_action_id";
-    private static final String ACTION_ID_KEY = "action_id";
+    private static final String ORDER_ID_KEY = "order_id";
 
     public static void setDriverId(Context context, String driverID) {
         if (TextUtils.isEmpty(driverID))
@@ -24,13 +24,13 @@ public class SharedPreferenceStore {
         editor.commit();
     }
 
-    public static void setActionID(Context context, String actionID) {
-        if (TextUtils.isEmpty(actionID))
+    public static void setOrderID(Context context, String orderID) {
+        if (TextUtils.isEmpty(orderID))
             return;
 
         SharedPreferences.Editor editor = getEditor(context);
 
-        editor.putString(ACTION_ID_KEY, actionID);
+        editor.putString(ORDER_ID_KEY, orderID);
         editor.commit();
     }
 
@@ -66,14 +66,14 @@ public class SharedPreferenceStore {
         return getSharedPreferences(context).getString(STOPOVER_ACTION_ID_KEY, null);
     }
 
-    public static String getActionID(Context context) {
-        return getSharedPreferences(context).getString(ACTION_ID_KEY, null);
+    public static String getOrderID(Context context) {
+        return getSharedPreferences(context).getString(ORDER_ID_KEY, null);
     }
 
     public static void clearIDs(Context context) {
         SharedPreferences.Editor editor = getEditor(context);
         editor.remove(DRIVER_ID_KEY);
-        editor.remove(ACTION_ID_KEY);
+        editor.remove(ORDER_ID_KEY);
         editor.remove(STOPOVER_ACTION_ID_KEY);
         editor.remove(VISIT_ACTION_ID_KEY);
         editor.apply();

@@ -1,7 +1,6 @@
 package com.hypertrack.service_visit_android;
 
 import android.app.Application;
-
 import com.hypertrack.lib.HyperTrack;
 
 /**
@@ -13,10 +12,14 @@ public class ExampleAppApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // Initialize HyperTrack SDK with the Publishable Key
-        // Refer to documentation at https://docs.hypertrack.com/v3/gettingstarted/authentication.html#publishable-key
-        // @NOTE: Add **YOUR_PUBLISHABLE_KEY** here for SDK to be authenticated with HyperTrack Server - looks like:
-        //HyperTrack.initialize(this, "pk_123412j4oi21u4oi21u948712412j40");
+        // Initialize HyperTrack SDK with your Publishable Key here
+        // Refer to documentation at
+        // https://docs.hypertrack.com/gettingstarted/authentication.html
+        // @NOTE: Add **YOUR_PUBLISHABLE_KEY** here for SDK to be
+        // authenticated with HyperTrack Server
         HyperTrack.initialize(this, <YOUR_PUBLISHABLE_KEY_HERE>);
+
+        // Uncomment this to enable SDK's logging
+        // HyperTrack.enableDebugLogging(Log.VERBOSE);
     }
 }
